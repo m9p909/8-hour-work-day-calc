@@ -25,9 +25,8 @@
       </div>
       <div id="calculator" hidden>
         <div id="hoursWorkedContainer">
-          <h2>Hours worked:</h2>
-          <div class="input-group mb-3">
-            <input type="number" class="form-control" v-model="workingHours" />
+          <h2>Hours to work</h2>
+          <div class="input-group mb-3 d-flex justify-content-center">
             <div class="dropdown" style="width: 100px">
               <button
                 class="btn btn-secondary dropdown-toggle"
@@ -57,6 +56,8 @@
               class="form-control"
               v-model="startTime.hours"
             />
+
+            <span class="input-group-text">:</span>
             <input
               type="number"
               class="form-control"
@@ -69,31 +70,7 @@
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              >
-                {{startTime.hours}}
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li v-for="hour in timeRanges.hours" :value="hour">
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    @click="startTime.hours = hour"
-                    >{{ hour }}</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{startTime.minutes}}
-              </button>
+              ></button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li v-for="minute in timeRanges.minutes" :value="minute">
                   <a
@@ -137,6 +114,7 @@
               class="form-control"
               v-model="lunchTime.hours"
             />
+            <span class="input-group-text">:</span>
             <input
               type="number"
               class="form-control"
@@ -150,29 +128,6 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                {{lunchTime.hours}}
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li v-for="hour in timeRanges.hoursWorking" :value="hour">
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    @click="lunchTime.hours = hour"
-                    >{{ hour }}</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{lunchTime.minutes}}
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li v-for="minute in timeRanges.minutes" :value="minute">
@@ -234,10 +189,11 @@
             startTime.ampm == am ? startTime.hours : startTime.hours + 12,
             startTime.minutes
           );
-          const endTime = start.getTime() +
-              hoursToMS(workingHours) +
-              hoursToMS(lunchTime.hours) +
-              minutesToMS(lunchTime.minutes);
+          const endTime =
+            start.getTime() +
+            hoursToMS(workingHours) +
+            hoursToMS(lunchTime.hours) +
+            minutesToMS(lunchTime.minutes);
 
           const end = new Date(endTime);
           return formatAMPM(end);
@@ -269,9 +225,13 @@
             minutes: 0,
           },
           calculate() {
-            this.doneAt = calculateFinishTime(this.startTime, this.lunchTime, this._workingHours)
+            this.doneAt = calculateFinishTime(
+              this.startTime,
+              this.lunchTime,
+              this._workingHours
+            );
           },
-          doneAt: undefined
+          doneAt: undefined,
         }).mount();
 
         document.getElementById("calculator").hidden = false;
