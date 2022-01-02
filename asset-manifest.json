@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/8-hour-work-day-calc/static/css/main.5740cf87.css",
+    "main.js": "/8-hour-work-day-calc/static/js/main.0bace18a.js",
+    "static/js/377.c1855308.chunk.js": "/8-hour-work-day-calc/static/js/377.c1855308.chunk.js",
+    "service-worker.js": "/8-hour-work-day-calc/service-worker.js",
+    "index.html": "/8-hour-work-day-calc/index.html",
+    "main.5740cf87.css.map": "/8-hour-work-day-calc/static/css/main.5740cf87.css.map",
+    "main.0bace18a.js.map": "/8-hour-work-day-calc/static/js/main.0bace18a.js.map",
+    "377.c1855308.chunk.js.map": "/8-hour-work-day-calc/static/js/377.c1855308.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5740cf87.css",
+    "static/js/main.0bace18a.js"
+  ]
+}
